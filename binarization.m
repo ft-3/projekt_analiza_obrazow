@@ -4,7 +4,7 @@
 
 clear; clc;
 
-im1 = imread("kaczki.jpg");
+im1 = imread("TestPictures/kaczki.jpg");
 im1 = double(im1)/255;
 im1g = ao_rgb2gray(im1);
 
@@ -59,7 +59,10 @@ C = 0.05;
 % im3m = imfilter(im3g, fspecial('average', ws), 'replicate');
 %mozna uzyc filtru medianowego zamiast srednej, zobaczymy ktory bedzie
 %latwiej napisac:
-im3m = medfilt2(im3g, [ws ws]);
+%im3m = medfilt2(im3g, [ws, ws]);
+
+% Dopisany filt medianowy
+im3m = ao_medianfilt(im3g, ws);
 
 im3s = im3m - im3g - C;
 im3b = ao_imbinarize(im3s, 0);
